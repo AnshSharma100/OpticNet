@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fade {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center py-10">
+    <div class="bg-white p-6 rounded-xl shadow-lg max-w-2xl w-full text-center animate-fade">
+        <h1 class="text-3xl font-bold text-gray-800">Diagnosis Results</h1>
+
+        <img src="{{ url_for('static', filename='uploads/' + image_name) }}" alt="Uploaded Image"
+             class="my-6 rounded-lg border-2 border-blue-500 shadow-lg transition-transform duration-500 hover:scale-105">
+
+        <p class="text-gray-600 italic">Your uploaded image</p>
+
+        <div class="bg-green-100 text-green-800 font-bold p-4 rounded-lg mt-6 animate-fade">
+            <h2 class="text-2xl">Diagnosis: {{ diagnosis }}</h2>
+            <p class="mt-2">🩺 This result reflects the analysis of the uploaded retinal image.</p>
+        </div>
+
+        <div class="mt-6">
+            <label class="block text-lg font-medium text-gray-700">Confidence:</label>
+            <div class="w-full bg-gray-300 rounded-lg overflow-hidden mt-2">
+                <div class="bg-green-500 text-white text-center text-sm py-1"
+                     style="width: {{ confidence }}%; transition: width 1s;">
+                    {{ confidence }}%
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 mt-6 p-4 rounded-lg border border-gray-200 text-left">
+            <h3 class="text-xl font-semibold text-gray-800">What does this mean?</h3>
+            <p class="text-gray-600 mt-2">
+                Based on the analysis, your retinal image shows <strong>{{ diagnosis }}</strong>.
+                If the diagnosis indicates signs of retinopathy, please consult a healthcare provider for further evaluation.
+            </p>
+        </div>
+
+        <div class="bg-orange-50 mt-6 p-4 rounded-lg border border-orange-300 text-left">
+            <h3 class="text-xl font-semibold text-gray-800">Next Steps</h3>
+            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-2">
+                <li>📅 Schedule an appointment with your doctor.</li>
+                <li>🧾 Keep track of your medical history.</li>
+                <li>💊 Maintain a healthy lifestyle to prevent progression.</li>
+            </ul>
+        </div>
+
+        <a href="/" class="block bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg mt-6 transition-all duration-300">
+            Back to Home
+        </a>
+    </div>
+    <footer class="mt-10 text-gray-500 text-sm">
+        <p>2025 Diabetic Retinopathy Detection. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
